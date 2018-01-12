@@ -8,5 +8,16 @@ namespace OOP
 {
     class Test
     {
+
+        public void doTest()
+        {
+
+        }
+
+        public void gradeTest()
+        {
+
+        }
+
     }
 }
