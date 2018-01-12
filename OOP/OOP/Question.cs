@@ -7,19 +7,25 @@ using System.Threading.Tasks;
 namespace OOP
 {
     
-    public abstract  class Question<T> 
-    {
+        public abstract  class Question<T> 
+        {
             public string question { get; set; }
             public T answer { get; set; }
             public int points { get; set; }
 
-            public abstract void ask();
+            public void ask()
+            {
+           
+            Console.WriteLine(question);
+            answer = (T)Convert.ChangeType(Console.ReadLine(),typeof(T));
+
+            }
             public abstract void grade();
 
-    }
+        }
 
-    public class YesNoQuestion : Question<bool>
-    {
+        public class YesNoQuestion : Question<bool>
+        {
 
         public YesNoQuestion(string q, bool a, int p)
         {
@@ -28,21 +34,17 @@ namespace OOP
             points = p;
         }
 
-        public override void ask()
-        {
-
-
-        }
+        
 
         public override void grade()
         {
 
         }
 
-    }
+        }
 
-    public class MultipleChoice : Question<char[]>
-    {
+        public class MultipleChoice : Question<char[]>
+        {
         string[] possibleAnswers { get; set; }
 
         public MultipleChoice(string q, char[] a , int p, string[] aP)
@@ -53,11 +55,7 @@ namespace OOP
             possibleAnswers = aP;
         }
 
-        public override void ask()
-        {
-
-
-        }
+       
 
         public override void grade()
         {
@@ -75,11 +73,7 @@ namespace OOP
             points = p;   
             }
 
-        public override void ask()
-        {
-
-
-        }
+       
 
         public override void grade()
         {
