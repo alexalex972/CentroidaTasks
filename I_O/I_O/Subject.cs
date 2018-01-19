@@ -14,27 +14,18 @@ namespace I_O
         public void printReq()
         {
 
-            
-            foreach(Subject a in requierments)
+            Console.WriteLine("SubRequiered of that subject: ");
+            foreach (Subject a in requierments)
             {
-                Console.WriteLine(a.subject);
-                /*Console.WriteLine("Requiered Subjects: ");
-                Console.WriteLine(a.subject);
-                if (a.requierments.Count > 0)
-                {
-                    Console.WriteLine("------Subrequiered Subjects: ");
-                    foreach (Subject b in a.requierments)
-                    {
-                        Console.WriteLine(b.subject);
-                        b.printReq();
-                    }
-                }*/
-
-
-
-
+           
+                Console.WriteLine("---" + a.subject);
             }
+
+
         }
+        
+
+       
 
         public void addReq(string b, List<Subject> s)
         {

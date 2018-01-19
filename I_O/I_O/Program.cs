@@ -14,23 +14,26 @@ namespace I_O
 
         public static void requieredSubjects(List<Subject> a, int subjectWanted)
         {
-
+           
             Console.WriteLine("Desired Subject: " + a[subjectWanted].subject);
-            if(a[subjectWanted].requierments.Count == 0)
+            Console.WriteLine();
+            if (a[subjectWanted].requierments.Count == 0)
             {
                 Console.WriteLine("Requiered Subjects None");
             }
             else
             {
+                foreach(Subject item in a[subjectWanted].requierments)
+                {
+                    Console.WriteLine("Requiered Subject: "+item.subject);
+                    item.printReq();
+                    Console.WriteLine();
+                }
                 
-                a[subjectWanted].printReq();
 
-            }
             
-
-
-
-         }
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -65,22 +68,18 @@ namespace I_O
                 {
                     foreach(string item in subjects.Skip(1))
                     {
-                        collectionSubject[j].addReq(item, collectionSubject);
+                        if (collectionSubject[j].subject == Convert.ToInt32(item))
+                        {
+                            Console.WriteLine("Error, Please fix it! ");
+                            Console.ReadLine();
+                            return;
+                        }
+                        else { collectionSubject[j].addReq(item, collectionSubject); }
                     }
                 }
                 
 
             }
-
-
-            /*foreach (Subject a in collectionSubject)
-            {
-                Console.WriteLine(a.subject);
-                Console.WriteLine("- - -");
-                
-                a.printReq();
-                Console.WriteLine();
-            }*/
 
             requieredSubjects(collectionSubject, 3);
 
