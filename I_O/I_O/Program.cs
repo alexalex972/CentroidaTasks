@@ -10,8 +10,26 @@ namespace I_O
 {
     class Program
     {
+        
+
+        public static void requieredSubjects(List<Subject> a, int subjectWanted)
+        {
+
+            Console.WriteLine("Desired Subject: " + a[subjectWanted].subject);
+            if(a[subjectWanted].requierments.Count == 0)
+            {
+                Console.WriteLine("Requiered Subjects None");
+            }
+            else
+            {
+                Console.WriteLine("Requiered Subjects: ");
+                a[subjectWanted].printReq();
+            }
+            
 
 
+
+         }
 
         static void Main(string[] args)
         {
@@ -21,30 +39,48 @@ namespace I_O
             var logFile = File.ReadAllLines("requierments.txt");
             var logList = new List<string>(logFile);
             string[] subjects;
+            
 
-            foreach(string item in logList)
+            for(int i=0; i <logList.Count;i++)
             {
-               subjects = item.Split(' ');
+               subjects = logList[i].Split(' ');
                Subject sub = new Subject();
-               sub.subject = subjects[0];
-                foreach (string req in subjects.Skip(1))
-                {
-                    sub.requierments.Add(req);
-                }
+               sub.subject = Convert.ToInt32(subjects[0]);
 
-                collectionSubject.Add(sub); 
+                
+
+               collectionSubject.Add(sub); 
+
+
+            }
+
+            for (int i = 0; i < logList.Count; i++)
+            {
+                subjects = logList[i].Split(' ');
+
+                if(collectionSubject[i].subject == Convert.ToInt32(subjects[0]))
+                {
+                    foreach(string item in subjects.Skip(1))
+                    {
+                        collectionSubject[i].addReq(item, collectionSubject);
+                    }
+                }
+                
 
             }
 
 
-            foreach(Subject a in collectionSubject)
+            /*foreach (Subject a in collectionSubject)
             {
                 Console.WriteLine(a.subject);
                 Console.WriteLine("- - -");
                 a.printReq();
                 Console.WriteLine();
-            }
-            
+            }*/
+
+            requieredSubjects(collectionSubject, 0);
+
+
             Console.ReadLine();
 
         }
