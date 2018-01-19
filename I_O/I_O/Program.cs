@@ -22,8 +22,9 @@ namespace I_O
             }
             else
             {
-                Console.WriteLine("Requiered Subjects: ");
+                
                 a[subjectWanted].printReq();
+
             }
             
 
@@ -54,15 +55,17 @@ namespace I_O
 
             }
 
-            for (int i = 0; i < logList.Count; i++)
+            for (int j = 0; j < logList.Count; j++)
             {
-                subjects = logList[i].Split(' ');
+                subjects = logList[j].Split(' ');
+                
 
-                if(collectionSubject[i].subject == Convert.ToInt32(subjects[0]))
+
+                if (collectionSubject[j].subject == Convert.ToInt32(subjects[0]))
                 {
                     foreach(string item in subjects.Skip(1))
                     {
-                        collectionSubject[i].addReq(item, collectionSubject);
+                        collectionSubject[j].addReq(item, collectionSubject);
                     }
                 }
                 
@@ -74,11 +77,12 @@ namespace I_O
             {
                 Console.WriteLine(a.subject);
                 Console.WriteLine("- - -");
+                
                 a.printReq();
                 Console.WriteLine();
             }*/
 
-            requieredSubjects(collectionSubject, 0);
+            requieredSubjects(collectionSubject, 3);
 
 
             Console.ReadLine();
