@@ -20,14 +20,8 @@ namespace Base64
             MyBase64 d = new MyBase64(c);
             d.print();
 
-
-            a= a + d;
-            a.print();
-
-            //a += d;
-
-           // a.print();
-
+            
+           
 
             Console.ReadLine();
             
