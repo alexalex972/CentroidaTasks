@@ -11,13 +11,26 @@ namespace Base64
         static void Main(string[] args)
         {
             char[] b = new char[] { };
-
             b = Console.ReadLine().ToCharArray();
             MyBase64 a = new MyBase64(b);
+            a.print();
 
-            Console.WriteLine(a.encodedString);
+            char[] c = new char[] { };
+            c = Console.ReadLine().ToCharArray();
+            MyBase64 d = new MyBase64(c);
+            d.print();
+
+
+            a= a + d;
+            a.print();
+
+            //a += d;
+
+           // a.print();
+
+
             Console.ReadLine();
             
-        }
+       } 
     }
 }
