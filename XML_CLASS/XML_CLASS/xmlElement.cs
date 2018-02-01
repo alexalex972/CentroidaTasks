@@ -10,15 +10,15 @@ namespace XML_CLASS
     {
 
         private string elementName; // име на елемента
-        private List<xmlElement> subEl = new List<xmlElement>(); // •	списък от вложени елементи
+        private List<xmlElement> subEl = new List<xmlElement>(); // списък от вложени елементи
         private List<xmlAttribute> _attributes = new List<xmlAttribute>(); // списък от атрибути и стойности
         private string _value = ""; // текст
 
-        public xmlElement(string elementN)
+        public xmlElement(string elementN) 
         {
             elementName = elementN;
         }
-
+        
         public List<xmlElement> children
         {
             get { return subEl; }
@@ -46,30 +46,41 @@ namespace XML_CLASS
         {
             _attributes.Add(attribute);
         }
-        public string getString()
+
+        public void printXml()
         {
-            string returnString = "";
-            returnString += "<" + elementName;
-            foreach (xmlAttribute attr in _attributes)
+            Console.Write("<" + elementName);
+            foreach(xmlAttribute attribute in _attributes)
             {
-                returnString += " " + attr.key + "='" + attr.value + "'";
+                Console.Write(" " + attribute.key + "='" + attribute.value + "'");
             }
             if (subEl.Count > 0 || _value.Length > 0)
             {
-                returnString += ">";
-                returnString += _value;
+                if (_value.Length > 0)
+                {
+                    Console.Write(">");
+                    Console.Write(_value);
+                }
+                else
+                {
+                    Console.WriteLine(">");
+                    Console.Write(_value);
+                }
+
                 foreach (xmlElement child in subEl)
                 {
-                    returnString += child.getString();
+                    child.printXml();
+
                 }
-                returnString += "</" + elementName + ">";
+                Console.WriteLine("</" + elementName + ">");
             }
             else
             {
-                returnString += " />";
+                Console.WriteLine("/>");
             }
-            return returnString;
+            
         }
+
 
     }
 
@@ -79,7 +90,7 @@ namespace XML_CLASS
         private string _val;
 
 
-        public xmlAttribute(string key, string val)
+        public xmlAttribute(string key, string val) 
         {
             _key = key;
             _val = val;
@@ -96,6 +107,6 @@ namespace XML_CLASS
             get { return _val; }
             set { _val = value; }
         }
-
+        
     }
 }
