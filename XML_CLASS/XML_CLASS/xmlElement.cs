@@ -9,14 +9,15 @@ namespace XML_CLASS
     public class xmlElement
     {
 
-        private string elementName; // име на елемента
-        private List<xmlElement> subEl = new List<xmlElement>(); // списък от вложени елементи
-        private List<xmlAttribute> _attributes = new List<xmlAttribute>(); // списък от атрибути и стойности
-        private string _value = ""; // текст
+        public string elementName; // име на елемента
+        public List<xmlElement> subEl = new List<xmlElement>(); // списък от вложени елементи
+        public List<xmlAttribute> _attributes = new List<xmlAttribute>(); // списък от атрибути и стойности
+        public string _value = ""; // текст
 
         public xmlElement(string elementN) 
         {
             elementName = elementN;
+
         }
         
         public List<xmlElement> children
@@ -49,6 +50,7 @@ namespace XML_CLASS
 
         public void printXml()
         {
+            
             Console.Write("<" + elementName);
             foreach(xmlAttribute attribute in _attributes)
             {
@@ -81,19 +83,44 @@ namespace XML_CLASS
             
         }
 
+        public void Enumerate()
+        {
+            for (int i = 0; i < this.subEl.Count(); i++)
+            {
+                this.subEl[i]._attributes[0]._val = i;
+            }
+        }
+
+        public void deleteAtt(string a)
+        {
+            _attributes.Remove(_attributes.Find(x => x._key.Contains(a))); 
+        }
+
+
+        public void addChildAt(xmlElement element, int pos)
+        {
+            subEl.Insert(pos, element);
+
+        }
+
+        public void deleteChildAt(int pos)
+        {
+            subEl.RemoveAt(pos);
+        }
 
     }
 
     public class xmlAttribute
     {
-        private string _key;
-        private string _val;
+        public string _key;
+        public int _val;
 
 
-        public xmlAttribute(string key, string val) 
+        public xmlAttribute(string key, int value) 
         {
             _key = key;
-            _val = val;
+            _val = value;
+            
         }
 
         public string key
@@ -102,11 +129,13 @@ namespace XML_CLASS
             set { _key = value; }
         }
 
-        public string value
+        public int value
         {
             get { return _val; }
             set { _val = value; }
         }
+        
+        
         
     }
 }
