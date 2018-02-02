@@ -15,50 +15,58 @@ namespace XML_CLASS
              
             xmlElement people = new xmlElement("people");
 
-
-
             xmlElement person = new xmlElement("person");
             xmlElement name = new xmlElement("name");
-            name.value = "John Smith";
             xmlElement address = new xmlElement("address");
-            address.value = "USA";
-            xmlAttribute id = new xmlAttribute("id", 1);
-
+            xmlAttribute id = new xmlAttribute("id");
             person.addAttribute(id);
             person.addChild(name);
             person.addChild(address);
-            people.addChild(person);
 
             xmlElement person1 = new xmlElement("person");
             xmlElement name1 = new xmlElement("name");
-            name1.value = "Ivan Petrov";
             xmlElement address1 = new xmlElement("address");
-            address1.value = "Bulgaria";
-            xmlAttribute id1 = new xmlAttribute("id",2);
-
+            xmlAttribute id1 = new xmlAttribute("id");
             person1.addAttribute(id1);
             person1.addChild(name1);
             person1.addChild(address1);
-            people.addChild(person1);
-
 
             xmlElement person2 = new xmlElement("person");
             xmlElement name2 = new xmlElement("name");
-            name2.value = "Alex Mishev";
             xmlElement address2 = new xmlElement("address");
-            address1.value = "Romania";
-            xmlAttribute id2 = new xmlAttribute("id", 2);
-
+            xmlAttribute id2 = new xmlAttribute("id");
             person2.addAttribute(id2);
             person2.addChild(name2);
             person2.addChild(address2);
-            people.addChildAt(person2,2);
-            people.deleteChildAt(2);
+
+            name._value = "John Smith";
+            name1._value = "Ivan Petrov";
+            address._value = "USA";
+            address1._value = "Bulgaria";
+            name2._value = "Alex Mishev";
+            address2._value = "USA";
+
+
+
+            people.addChild(person);
+            people.addChild(person1);
+            people.addChild(person2);
+
+            /*foreach (string a in people/"address")
+            {
+                Console.WriteLine(a);
+            }  */
 
             //person.deleteAtt("id");
             people.Enumerate();
             people.printXml();
-            
+
+
+            Console.ReadLine();
+
+            Console.WriteLine("People from USA:");
+            people.search("USA");
+
             Console.ReadLine();
              
 

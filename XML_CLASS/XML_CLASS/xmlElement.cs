@@ -108,7 +108,40 @@ namespace XML_CLASS
             subEl.RemoveAt(pos);
         }
 
+        public static List<string> operator /(xmlElement left, string right)
+        {
+            List<string> result = new List<string>();
+            
+            for(int i =0; i< left.subEl.Count; i++)
+            {
+                result.Add(left.subEl[i].subEl[1]._value);
+            }
+
+            return result;
+        }
+
+        public void addChildren(List<xmlElement> children)
+        {
+            foreach (xmlElement _child in children)
+            {
+                addChild(_child);
+            }
+        }
+
+        public void search(string a)
+        {
+            for (int i = 0; i < this.subEl.Count; i++)
+            {
+                if(this.subEl[i].subEl[1]._value == a)
+                {
+                    Console.WriteLine(this.subEl[i].subEl[0]._value);
+                }
+            }
+        }
+
     }
+
+
 
     public class xmlAttribute
     {
@@ -116,10 +149,10 @@ namespace XML_CLASS
         public int _val;
 
 
-        public xmlAttribute(string key, int value) 
+        public xmlAttribute(string key) 
         {
             _key = key;
-            _val = value;
+            
             
         }
 
