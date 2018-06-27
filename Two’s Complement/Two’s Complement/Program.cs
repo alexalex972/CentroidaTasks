@@ -37,6 +37,9 @@ namespace Two_s_Complement
 
         public static int getIntegerComplement(int number) 
         {
+            //Question:
+            //Shouldn't you add 1, when getting two's complement as explained in https://www.cs.cornell.edu/~tomf/notes/cps104/twoscomp.html
+            
             string binaryNumber = Convert.ToString(number, 2); // the Convert.ToString function converts the given number
                                                                // to the base passed as a second parameter in this case 2  
             string complement = ""; 
